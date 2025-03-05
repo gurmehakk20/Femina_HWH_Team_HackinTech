@@ -1,0 +1,22 @@
+/* Add this to your global CSS file */
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .react-calendar__month-view__weekdays {
+    margin-top: 10px;
+  }
+  
+  .react-calendar__tile {
+    transition: background-color 0.2s ease;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #f0c3e5;
+  }
+  
