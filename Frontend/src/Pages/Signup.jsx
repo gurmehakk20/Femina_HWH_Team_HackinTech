@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { signUpUser } from './api'; // Import the signUpUser function
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -14,6 +14,8 @@ const Signup = () => {
   const [passwordStrength, setPasswordStrength] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState('');
+  
+  const navigate = useNavigate(); // Initialize the navigate hook
 
   // Live form change handler
   const handleChange = (e) => {
@@ -69,18 +71,27 @@ const Signup = () => {
       setIsLoading(true);
       setApiError('');
       try {
-        // Use the signUpUser function for the API request
-        const response = await signUpUser(form);
-        console.log('Signup successful:', response);
-        // Redirect the user or show success message here
+        // Send the signup request
+        const response = await axios.post('http://localhost:5000/api/users/signup', form);
+  
+        // Log the response to check the token
+        console.log('Signup successful:', response.data);
+  
+        // Store the token in localStorage (or sessionStorage)
+        localStorage.setItem('token', response.data.token);
+        console.log(response.data.token)
+  
+        // Redirect to the login page
+        // navigate('/login');
       } catch (error) {
-        setApiError(error.message || 'Something went wrong. Please try again.');
+        setApiError(error.response?.data?.error || 'Something went wrong. Please try again.');
         console.error('Signup error:', error);
       } finally {
         setIsLoading(false);
       }
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -185,11 +196,22 @@ const Signup = () => {
             type="submit"
             className={`w-full py-2 rounded transition ${isLoading ? 'bg-gray-400' : 'bg-[#ff4d94]'}`}
             disabled={isLoading}
+
           >
             {isLoading ? 'Signing Up...' : 'Sign Up'}
           </button>
           {apiError && <p className="text-red-500 text-center mt-4">{apiError}</p>}
         </form>
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">Already have an account? 
+            <button
+              onClick={() => navigate('/login')}
+              className="text-[#ff4d94] font-semibold"
+            >
+              Login here
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );

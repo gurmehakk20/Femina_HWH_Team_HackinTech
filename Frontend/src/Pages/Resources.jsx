@@ -12,6 +12,8 @@ const categories = [
   "Fitness",
 ];
 
+const API_URL = import.meta.env.REACT_APP_API_URL;
+
 const Resources = () => {
   const [resources, setResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,13 +21,18 @@ const Resources = () => {
   const [bookmarked, setBookmarked] = useState([]);
   const [selectedResource, setSelectedResource] = useState(null);
 
-  // Fetch resources from API
-  useEffect(() => {
-    fetch('/api/resources')
+  // Declare fetchResources function before useEffect
+  const fetchResources = () => {
+    fetch(`${API_URL}/api/resources`)
       .then((res) => res.json())
       .then((data) => setResources(data))
-      .catch((err) => console.error(err));
-  }, []);
+      .catch((err) => console.error('Error fetching resources:', err));
+  };
+
+  // UseEffect to fetch data when component mounts
+  useEffect(() => {
+    fetchResources();  // Calling the function after it's defined
+  }, []); // Empty dependency array to run only on component mount
 
   // Toggle bookmark functionality
   const toggleBookmark = (id) => {
@@ -47,7 +54,7 @@ const Resources = () => {
   return (
     <div className="min-h-screen bg-[#fff0f5] p-6">
       <h1 className="text-4xl font-bold text-center text-[#ff4d94] mb-6">Resources</h1>
-      
+
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
         <div className="relative w-full md:w-1/3">
@@ -74,7 +81,7 @@ const Resources = () => {
           ))}
         </div>
       </div>
-      
+
       {/* Resources Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredResources.map((resource) => (

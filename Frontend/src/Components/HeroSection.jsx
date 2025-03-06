@@ -5,8 +5,8 @@ import { person1, person2, person3, person4, person5 } from '../assets/icons/ind
 
 const HeroSection = () => {
   return (
-    <div className="bg-[#F9F0F3] text-center py-1 px-4 relative h-500">
-      <div className="bg-pink-500 text-white p-3 rounded-lg m-10 h-150">
+    <div className="bg-[#F9F0F3] text-center py-1 px-4 relative h-[500px]">
+      <div className="bg-pink-500 text-white p-3 rounded-lg m-10 h-[550px]">
         <div className="text-center py-10 px-5">
           <h1 className="text-4xl font-bold mb-5">YOUR HEALTH OUR PRIORITY</h1>
           <div className="flex flex-col items-center mb-7">
