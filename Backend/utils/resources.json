@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "title": "Understanding Mental Wellbeing",
+      "preview": "A guide to mental wellness, self-care, and coping strategies.",
+      "category": "Mental Wellbeing",
+      "pdf": "https://example.com/mental-wellbeing.pdf",
+      "fullContent": "Mental wellbeing is essential for maintaining a healthy life. This guide covers techniques like mindfulness, stress management, and more..."
+    },
+    {
+      "id": 2,
+      "title": "Female Health Tips",
+      "preview": "Essential tips for maintaining good female health.",
+      "category": "Female Health",
+      "pdf": "https://example.com/female-health.pdf",
+      "fullContent": "This resource provides insights into various aspects of female health, such as nutrition, exercise, and preventive care..."
+    },
+    {
+      "id": 3,
+      "title": "Reproductive Health Awareness",
+      "preview": "Comprehensive guide to understanding reproductive health.",
+      "category": "Reproductive Health",
+      "pdf": "https://example.com/reproductive-health.pdf",
+      "fullContent": "Reproductive health is a critical part of overall health, covering topics such as menstruation, fertility, and contraception..."
+    },
+    {
+      "id": 4,
+      "title": "The Period Health Guide",
+      "preview": "Learn about menstrual health and ways to manage symptoms.",
+      "category": "Period",
+      "pdf": "https://example.com/period-health.pdf",
+      "fullContent": "Periods are a natural part of life, but managing them can be difficult. This guide discusses various approaches to period care..."
+    },
+    {
+      "id": 5,
+      "title": "Fitness for Women",
+      "preview": "Exercise and fitness tips designed specifically for women.",
+      "category": "Fitness",
+      "pdf": "https://example.com/fitness-for-women.pdf",
+      "fullContent": "Fitness is an important part of staying healthy. This guide includes workout routines, nutrition tips, and advice on how to get fit..."
+    }
+  ]
+  

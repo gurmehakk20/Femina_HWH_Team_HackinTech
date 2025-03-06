@@ -1,22 +1,19 @@
-const Resource = require('../models/Resource');
+import { promises as fs } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// GET all resources
-exports.getResources = async (req, res, next) => {
-  try {
-    const resources = await Resource.find();
-    res.status(200).json(resources);
-  } catch (error) {
-    next(error);
-  }
-};
+// Get the directory name of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// POST a new resource
-exports.createResource = async (req, res, next) => {
+// Read data from resources.json
+const resourcesPath = path.join(__dirname, "../utils/resources.json");
+
+export const getResources = async (req, res) => {
   try {
-    const newResource = new Resource(req.body);
-    await newResource.save();
-    res.status(201).json(newResource);
+    const data = await fs.readFile(resourcesPath, "utf-8");
+    res.json(JSON.parse(data));
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: "Error reading resources data" });
   }
 };

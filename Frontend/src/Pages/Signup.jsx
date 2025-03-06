@@ -1,5 +1,6 @@
-// SignUpPage.jsx
 import React, { useState } from 'react';
+import axios from 'axios';
+import { signUpUser } from './api'; // Import the signUpUser function
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -11,6 +12,8 @@ const Signup = () => {
   });
   const [errors, setErrors] = useState({});
   const [passwordStrength, setPasswordStrength] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState('');
 
   // Live form change handler
   const handleChange = (e) => {
@@ -59,12 +62,23 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit handler
-  const handleSubmit = (e) => {
+  // Submit handler with API call
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle signup logic (e.g., call an API)
-      console.log('Form submitted:', form);
+      setIsLoading(true);
+      setApiError('');
+      try {
+        // Use the signUpUser function for the API request
+        const response = await signUpUser(form);
+        console.log('Signup successful:', response);
+        // Redirect the user or show success message here
+      } catch (error) {
+        setApiError(error.message || 'Something went wrong. Please try again.');
+        console.error('Signup error:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -167,29 +181,15 @@ const Signup = () => {
             )}
           </div>
           {/* Submit Button */}
-          <button type="submit" className="w-full bg-[#ff4d94] text-white py-2 rounded transition hover:bg-[#e64387]">
-            Sign Up
+          <button
+            type="submit"
+            className={`w-full py-2 rounded transition ${isLoading ? 'bg-gray-400' : 'bg-[#ff4d94]'}`}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
           </button>
+          {apiError && <p className="text-red-500 text-center mt-4">{apiError}</p>}
         </form>
-        {/* Social Signup Options */}
-        <div className="mt-6 flex flex-col items-center">
-          <p className="text-gray-600">Or sign up with</p>
-          <div className="flex mt-2 space-x-4">
-            <button className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full hover:scale-110 transition transform">
-              {/* Replace with appropriate icon library or SVG */}
-              <i className="fab fa-facebook-f"></i>
-            </button>
-            <button className="flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full hover:scale-110 transition transform">
-              <i className="fab fa-google"></i>
-            </button>
-          </div>
-          <p className="mt-4 text-gray-600">
-            Already have an account?{' '}
-            <a href="/login" className="text-[#ff4d94] hover:underline">
-              Login here
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );
