@@ -16,6 +16,8 @@ connectDB();
 
 // Routes
 app.use("/api/users", userRoutes);
+// app.use('/api/resources', resourceRoutes);
+
 
 app.get("/", (req, res) => res.send("Femina API Running"));
 

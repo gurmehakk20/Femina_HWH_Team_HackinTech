@@ -1,5 +1,5 @@
-// HeroSection.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import warrior from '../assets/icons/warrior.png';
 import { person1, person2, person3, person4, person5 } from '../assets/icons/index';
 
@@ -27,36 +27,51 @@ const HeroSection = () => {
               <span className="text-lg">4572 Users</span>
             </div>
           </div>
+
+          {/* Buttons Section */}
           <div className="flex justify-between mb-8">
-            <button className="bg-white text-black rounded-full px-4 py-2 flex items-center hover:bg-gray-100 transition-colors">
-              <span>Book An Ambulance</span>
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            <button className="bg-white text-black rounded-full px-4 py-2 flex items-center hover:bg-gray-100 transition-colors">
-              <span>Book An Appointment</span>
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+            <Link to="/ambulance">
+              <button className="bg-white text-black rounded-full px-4 py-2 flex items-center transition-all duration-200 hover:bg-pink-200 focus:bg-pink-600">
+                <span>Book An Ambulance</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </Link>
+            <Link to="/book-appointment">
+              <button className="bg-white text-black rounded-full px-4 py-2 flex items-center transition-all duration-200 hover:bg-pink-200 focus:bg-pink-600">
+                <span>Book An Appointment</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </Link>
           </div>
 
           <div className="flex justify-between items-center mb-8 relative">
-            <button className="bg-white text-black rounded-full px-4 py-2 flex items-center hover:bg-gray-100 transition-colors">
-              <span>Track Your Cycle</span>
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+            <Link to="/cycle-tracker">
+              <button className="bg-white text-black rounded-full px-4 py-2 flex items-center transition-all duration-200 hover:bg-pink-200 focus:bg-pink-600">
+                <span>Track Your Cycle</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </Link>
+
             {/* Warrior Image - Positioned higher */}
             <div
               className="w-64 h-96 bg-cover bg-center absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4"
               style={{ backgroundImage: `url(${warrior})` }}
             ></div>
-            <button className="bg-white text-black rounded-full px-4 py-2 flex items-center hover:bg-gray-100 transition-colors">
-              <span>Track Your Health</span>
-            </button>
+
+            <Link to="/health-tracker">
+              <button className="bg-white text-black rounded-full px-4 py-2 flex items-center transition-all duration-200 hover:bg-pink-200 focus:bg-pink-600">
+                <span>Track Your Health</span>
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </Link>
           </div>
 
           <div className="bg-[#A1715C] rounded-lg p-6 flex justify-between">
@@ -77,6 +92,7 @@ const HeroSection = () => {
               <p className="text-sm">Downloads</p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
